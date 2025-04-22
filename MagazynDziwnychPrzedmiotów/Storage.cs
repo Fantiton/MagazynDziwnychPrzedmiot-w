@@ -38,6 +38,11 @@ namespace MagazynDziwnychPrzedmiotów
             {
                 Console.WriteLine(item.Description());
             }
+
+            if (Content.Count == 0)
+            {
+                Console.WriteLine("Magazyn jest pusty");
+            }
         }
     }
 }
