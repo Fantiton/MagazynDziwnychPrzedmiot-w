@@ -58,7 +58,7 @@ void Main()
            // EditItem();
            break;
         case "24":
-            //DeleteItem();
+           DeleteItem();
            break;
         default:
             Main();
@@ -391,8 +391,17 @@ void Main()
         Item selectedItem2 = selectedStorageContent[selectedItemIndex2];
         Console.WriteLine(selectedItem2.Description());
         Main();
+    }
 
-        
+    void DeleteItem()
+    {
+        int selectedItemIndex = SelectItem(freeItems);
+        Item selectedItem = freeItems[selectedItemIndex];
+        freeItems.RemoveAt(selectedItemIndex);  
+
+        Console.WriteLine($"Usunięto przedmiot: {selectedItem.Name}");
+
+        Main();
     }
 }
 
