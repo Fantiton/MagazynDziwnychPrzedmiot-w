@@ -64,29 +64,36 @@ void Main()
     {
         Console.WriteLine("Nazwij Magazyn: ");
 
-        string name = Console.ReadLine();
-        if (name == "e")
+        string input = Console.ReadLine();
+
+        if (input == "e")
         {
             Main();
         }
+
+        string name = input;
 
         Console.WriteLine("Podaj pojemność Magazynu: ");
 
-        int capacity = int.Parse(Console.ReadLine());
+        input = Console.ReadLine();
 
-        if (capacity.ToString() == "e")
+        if (input.ToString() == "e")
         {
             Main();
         }
+
+        int capacity = int.Parse(input);
 
         Console.WriteLine("Podaj maksymalną wagę zawartości Magazynu: ");
 
-        float maxContentWeight = float.Parse(Console.ReadLine());
+        input = Console.ReadLine();
 
-        if (maxContentWeight.ToString() == "e")
+        if (input == "e")
         {
             Main();
         }
+
+        float maxContentWeight = float.Parse(input);
 
         Storage storage = new Storage(name, capacity, maxContentWeight);
         storages.Add(storage);
