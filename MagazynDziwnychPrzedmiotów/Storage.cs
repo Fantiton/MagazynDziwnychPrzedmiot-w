@@ -8,7 +8,7 @@ namespace MagazynDziwnychPrzedmiotów
 {
     internal class Storage
     {
-        private string Name;
+        public string Name;
         private int Capacity;
         private int ItemCount;
         private float MaxContentWeight;

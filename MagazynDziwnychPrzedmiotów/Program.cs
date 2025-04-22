@@ -10,9 +10,11 @@ void Main()
     Console.WriteLine();
     Console.WriteLine("11. - Dodaj Magazyn");
     Console.WriteLine("12. - Wyświetl zawartość Magazynu");
-    Console.WriteLine("13. - Dodaj przedmiot do Magazynu");
-    Console.WriteLine("14. - Usuń przedmiot w Magazynie");
-    Console.WriteLine("15. - Usuń Magazyn");
+    Console.WriteLine("13. - Wyświetl dostepne Magazyny");
+    Console.WriteLine("14. - Wyświelt wszystkie Magazyny");
+    Console.WriteLine("15. - Dodaj przedmiot do Magazynu");
+    Console.WriteLine("16. - Usuń przedmiot w Magazynie");
+    Console.WriteLine("17. - Usuń Magazyn");
     Console.WriteLine();
     Console.WriteLine("21. - Dodaj Przedmiot");
     Console.WriteLine("22. - Wypisz Przedmiot");
@@ -28,11 +30,18 @@ void Main()
            // ListStorage();
            break;
         case "13":
-            //InsertItemIS();
+            //ListFreeStorages();
            break;
-        case "14"
-           // DeleteItemIS(); break;
+        case "14":
+            // ListAllStorages();
+            break;
         case "15":
+            // AddItemToStorage();
+            break;
+        case "16":
+            // DeleteItemIS();
+            break;
+        case "17":
            // DeleteStorage();
            break;
         case "21":
@@ -82,6 +91,33 @@ void Main()
         storages.Add(storage);
 
         Console.WriteLine($"Dodano Magazyn: {name} {capacity} {maxContentWeight}");
+        Main();
+    }
+
+    void ListStorage()
+    {
+        Console.WriteLine("Wybierz Magazyn: ");
+        int i = 1;
+        foreach (Storage storage in storages)
+        {
+            Console.WriteLine($"{i}. - {storage.Name}");
+            i++;
+        }
+
+        if (Console.ReadLine() == "e")
+        {
+            Main();
+        }
+
+        if (int.Parse(Console.ReadLine()) > storages.Count() + 1)
+        {
+            Console.WriteLine("Nie wybrano dostępnej opcji");
+            ListStorage();
+        }
+
+        int selectedStorageIndex = int.Parse(Console.ReadLine()) - 1;
+        Storage selectedStorage = storages[selectedStorageIndex];
+        selectedStorage.ListContent();
         Main();
     }
 }
