@@ -304,5 +304,56 @@ void Main()
         storages.RemoveAt(selectedStorageIndex);
     }
 
+    void AddItem()
+    {
+        Console.WriteLine("Podaj nazwę przedmiotu: ");
+
+        string input = Console.ReadLine();
+
+        if(input == "e")
+        {
+            Main();
+        }
+
+        string name = input;
+
+        Console.WriteLine("Podaj wagę przedmiotu: ");
+
+        input = Console.ReadLine();
+
+        if (input == "e")
+        {
+            Main();
+        }
+
+        float weight = float.Parse(input);
+
+        Console.WriteLine("Podaj poziom dziwności przedmiotu: ");
+
+        input = Console.ReadLine();
+
+        if (input == "e")
+        {
+            Main();
+        }
+
+        int strangenessLevel = int.Parse(input);
+
+        Console.WriteLine("Czy przedmiot jest kruchy? (true/false): ");
+
+        input = Console.ReadLine();
+
+        if (input == "e")
+        {
+            Main();
+        }
+
+        bool isFragile = bool.Parse(input);
+
+        Item item = new Item(name, weight, strangenessLevel, isFragile);
+
+        freeItems.Add(item);
+    }
+
 }
 
