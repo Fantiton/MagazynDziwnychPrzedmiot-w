@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using MagazynDziwnychPrzedmiotów;
 using System.Collections;
+using System.ComponentModel.Design;
 using System.Net;
 
 List<Storage> storages = new List<Storage>();
@@ -32,7 +33,7 @@ void Main()
            ListStorage();
            break;
         case "13":
-            //ListFreeStorages();
+           ListFreeStorages();
            break;
         case "14":
             // ListAllStorages();
@@ -58,6 +59,9 @@ void Main()
         case "24":
             //DeleteItem();
            break;
+        default:
+            Main();
+            break;
     }
 
     void AddStorage()
@@ -128,6 +132,19 @@ void Main()
         int selectedStorageIndex = int.Parse(input) - 1;
         Storage selectedStorage = storages[selectedStorageIndex];
         selectedStorage.ListContent();
+        Main();
+    }
+
+    void ListFreeStorages()
+    {
+        Console.WriteLine("Dostępne Magazyny: ");
+        foreach (Storage storage in storages)
+        {
+            if (storage.GetItemCount() < storage.GetCapacity())
+            {
+                Console.WriteLine(storage.Name);
+            }
+        }
         Main();
     }
 }
