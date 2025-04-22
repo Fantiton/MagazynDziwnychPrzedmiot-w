@@ -20,6 +20,13 @@ namespace MagazynDziwnychPrzedmiotów
             MaxContentWeight = maxContentWeight;
         }
 
+        public Storage(string name, int capacity, float maxContentWeight)
+        {
+            Name = name;
+            Capacity = capacity;
+            MaxContentWeight = maxContentWeight;
+        }
+
         public void Add(Item item)
         {
             Content.Add(item);
