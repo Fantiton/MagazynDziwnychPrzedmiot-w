@@ -112,18 +112,20 @@ void Main()
             i++;
         }
 
-        if (Console.ReadLine() == "e")
+        string input = Console.ReadLine();
+
+        if (input == "e")
         {
             Main();
         }
 
-        if (int.Parse(Console.ReadLine()) > storages.Count() + 1)
+        if (int.Parse(input) > storages.Count() + 1)
         {
             Console.WriteLine("Nie wybrano dostępnej opcji");
             ListStorage();
         }
 
-        int selectedStorageIndex = int.Parse(Console.ReadLine()) - 1;
+        int selectedStorageIndex = int.Parse(input) - 1;
         Storage selectedStorage = storages[selectedStorageIndex];
         selectedStorage.ListContent();
         Main();
