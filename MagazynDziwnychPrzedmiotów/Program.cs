@@ -295,6 +295,12 @@ void Main()
         int selectedStorageIndex = int.Parse(input) - 1;
         Storage selectedStorage = storages[selectedStorageIndex];
         
+        List<Item> selectedStorageContent = selectedStorage.GetContent();
+        foreach (Item item in selectedStorageContent)
+        {
+            freeItems.Add(item);
+        }
+
         storages.RemoveAt(selectedStorageIndex);
     }
 
