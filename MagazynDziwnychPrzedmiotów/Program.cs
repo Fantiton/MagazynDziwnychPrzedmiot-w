@@ -22,7 +22,7 @@ void Main()
     Console.WriteLine();
     Console.WriteLine("21. - Dodaj Przedmiot");
     Console.WriteLine("22. - Wypisz Przedmiot");
-    Console.WriteLine("23. - Zmień Przedmiot");
+    Console.WriteLine("23. - Zmień Przedmiot (narazie kaput)");
     Console.WriteLine("23. - Usuń Przedmiot");
 
     switch (Console.ReadLine())
@@ -63,6 +63,59 @@ void Main()
         default:
             Main();
             break;
+    }
+
+    Storage SelectStorage()
+    {
+        Console.WriteLine("Wybierz Magazyn: ");
+
+        int i = 1;
+
+        foreach (Storage storage in storages)
+        {
+            Console.WriteLine($"{i}. - {storage.Name}");
+            i++;
+        }
+
+        string input = Console.ReadLine();
+
+        if (input == "e")
+        {
+            Main();
+        }
+
+        if (int.Parse(input) > storages.Count() + 1)
+        {
+            Console.WriteLine("Nie wybrano dostępnej opcji");
+            SelectStorage();
+        }
+
+        int selectedStorageIndex = int.Parse(input) - 1;
+        Storage selectedStorage = storages[selectedStorageIndex];
+        return selectedStorage;
+    }
+
+    int SelectItem(List<Item> items)
+    {
+        Console.WriteLine("Wybierz Przedmiot: ");
+        int i = 1;
+        foreach (Item item in items)
+        {
+            Console.WriteLine($"{i}. - {item.Name}");
+            i++;
+        }
+        string input = Console.ReadLine();
+        if (input == "e")
+        {
+            Main();
+        }
+        if (int.Parse(input) > items.Count() + 1)
+        {
+            Console.WriteLine("Nie wybrano dostępnej opcji");
+            SelectItem(items);
+        }
+        int selectedItemIndex = int.Parse(input) - 1;
+        return selectedItemIndex;
     }
 
     void AddStorage()
@@ -109,29 +162,7 @@ void Main()
 
     void ListStorage()
     {
-        Console.WriteLine("Wybierz Magazyn: ");
-        int i = 1;
-        foreach (Storage storage in storages)
-        {
-            Console.WriteLine($"{i}. - {storage.Name}");
-            i++;
-        }
-
-        string input = Console.ReadLine();
-
-        if (input == "e")
-        {
-            Main();
-        }
-
-        if (int.Parse(input) > storages.Count() + 1)
-        {
-            Console.WriteLine("Nie wybrano dostępnej opcji");
-            ListStorage();
-        }
-
-        int selectedStorageIndex = int.Parse(input) - 1;
-        Storage selectedStorage = storages[selectedStorageIndex];
+        Storage selectedStorage = SelectStorage();
         selectedStorage.ListContent();
         Main();
     }
@@ -161,112 +192,29 @@ void Main()
 
     void AddItemToStorage()
     {
-        Console.WriteLine("Wybierz Przedmiot: ");
-        int i = 1;
-        foreach (Item item in freeItems)
-        {
-            Console.WriteLine($"{i}. - {item.Name}");
-            i++;
-        }
-
-        string input = Console.ReadLine();
-
-        if (input == "e")
-        {
-            Main();
-        }
-
-        if (int.Parse(input) > freeItems.Count() + 1)
-        {
-            Console.WriteLine("Nie wybrano dostępnej opcji");
-            AddItemToStorage();
-        }
-
-        int selectedItemIndex = int.Parse(input) - 1;
+        int selectedItemIndex = SelectItem(freeItems);
         Item selectedItem = freeItems[selectedItemIndex];
 
-        Console.WriteLine("Wybierz Magazyn: ");
-        int j = 1;
-
-        foreach (Storage storage in storages)
-        {
-            Console.WriteLine($"{j}. - {storage.Name}");
-            j++;
-        }
-
-        input = Console.ReadLine();
-
-        if (input == "e")
-        {
-            Main();
-        }
-
-        if (int.Parse(input) > storages.Count() + 1)
-        {
-            Console.WriteLine("Nie wybrano dostępnej opcji");
-            AddItemToStorage();
-        }
-
-        int selectedStorageIndex = int.Parse(input) - 1;
-        Storage selectedStorage = storages[selectedStorageIndex];
+        Storage selectedStorage = SelectStorage();
 
         selectedStorage.Add(selectedItem);
         freeItems.RemoveAt(selectedItemIndex);
+
+        Main();
     }
 
     void DeleteItemIS()
     {
-        Console.WriteLine("Wybierz Magazyn: ");
-        int i = 1;
-        foreach (Storage storage in storages)
-        {
-            Console.WriteLine($"{i}. - {storage.Name}");
-            i++;
-        }
-
-        string input = Console.ReadLine();
-
-        if (input == "e")
-        {
-            Main();
-        }
-
-        if (int.Parse(input) > storages.Count() + 1)
-        {
-            Console.WriteLine("Nie wybrano dostępnej opcji");
-            DeleteItemIS();
-        }
-
-        int selectedStorageIndex = int.Parse(input) - 1;
-
-        Storage selectedStorage = storages[selectedStorageIndex];
+        Storage selectedStorage = SelectStorage();
         List<Item> selectedStorageContent = selectedStorage.GetContent();
 
-        Console.WriteLine("Wybierz Przedmiot: ");
-        int j = 1;
-        foreach (Item item in selectedStorageContent)
-        {
-            Console.WriteLine($"{j}. - {item.Name}");
-            j++;
-        }
-
-        input = Console.ReadLine();
-
-        if (input == "e")
-        {
-            Main();
-        }
-
-        if (int.Parse(input) > freeItems.Count() + 1)
-        {
-            Console.WriteLine("Nie wybrano dostępnej opcji");
-            DeleteItemIS();
-        }
-
-        int selectedItemIndex = int.Parse(input) - 1;
+        int selectedItemIndex = SelectItem(selectedStorageContent);
         Item selectedItem = selectedStorageContent[selectedItemIndex];
+
         selectedStorageContent.RemoveAt(selectedItemIndex);
         freeItems.Add(selectedItem);
+
+        Main();
     }
 
     void DeleteStorage()
@@ -302,6 +250,8 @@ void Main()
         }
 
         storages.RemoveAt(selectedStorageIndex);
+
+        Main();
     }
 
     void AddItem()
@@ -353,6 +303,8 @@ void Main()
         Item item = new Item(name, weight, strangenessLevel, isFragile);
 
         freeItems.Add(item);
+
+        Main();
     }
 
     void ListItem()
@@ -439,6 +391,8 @@ void Main()
         Item selectedItem2 = selectedStorageContent[selectedItemIndex2];
         Console.WriteLine(selectedItem2.Description());
         Main();
+
+        
     }
 }
 
