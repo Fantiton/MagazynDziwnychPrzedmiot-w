@@ -4,6 +4,8 @@ using System.Collections;
 using System.Net;
 
 List<Storage> storages = new List<Storage>();
+
+Main();
 void Main()
 {
     Console.WriteLine("System zarządzania przechowywaniem dziwnych przedmiotów");
@@ -62,30 +64,29 @@ void Main()
     {
         Console.WriteLine("Nazwij Magazyn: ");
 
-        if(Console.ReadLine() == "e")
+        string name = Console.ReadLine();
+        if (name == "e")
         {
             Main();
         }
-
-        string name = Console.ReadLine();
 
         Console.WriteLine("Podaj pojemność Magazynu: ");
 
-        if (Console.ReadLine() == "e")
+        int capacity = int.Parse(Console.ReadLine());
+
+        if (capacity.ToString() == "e")
         {
             Main();
         }
-
-        int capacity = int.Parse(Console.ReadLine());
 
         Console.WriteLine("Podaj maksymalną wagę zawartości Magazynu: ");
 
-        if (Console.ReadLine() == "e")
+        float maxContentWeight = float.Parse(Console.ReadLine());
+
+        if (maxContentWeight.ToString() == "e")
         {
             Main();
         }
-
-        float maxContentWeight = float.Parse(Console.ReadLine());
 
         Storage storage = new Storage(name, capacity, maxContentWeight);
         storages.Add(storage);
