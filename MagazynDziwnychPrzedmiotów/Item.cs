@@ -9,7 +9,7 @@ namespace MagazynDziwnychPrzedmiotów
 {
     internal class Item
     {
-        private string Name;
+        public string Name;
         private float Weight;
         private int StrangenessLevel;
         private Boolean IsFragile;
