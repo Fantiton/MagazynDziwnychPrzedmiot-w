@@ -27,6 +27,26 @@ namespace MagazynDziwnychPrzedmiotów
             MaxContentWeight = maxContentWeight;
         }
 
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public int GetItemCount()
+        {
+            return ItemCount;
+        }
+
+        public float GetMaxContentWeight()
+        {
+            return MaxContentWeight;
+        }
+
+        public int GetCapacity()
+        {
+            return Capacity;
+        }
+
         public void Add(Item item)
         {
             Content.Add(item);
