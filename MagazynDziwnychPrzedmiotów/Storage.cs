@@ -10,12 +10,26 @@ namespace MagazynDziwnychPrzedmiotów
     {
         private int Capacity;
         private int ItemCount;
-        private float MaxLoadWeight;
+        private float MaxContentWeight;
+        private List<Item> Content = new List<Item>();
 
-        public Storage(int capacity, int maxLoadWeight)
+        public Storage(int capacity, int maxContentWeight)
         {
             Capacity = capacity;
-            MaxLoadWeight = maxLoadWeight;
+            MaxContentWeight = maxContentWeight;
+        }
+
+        public void Add(Item item)
+        {
+            Content.Add(item);
+        }
+
+        public void ListContent()
+        {
+            foreach (var item in Content)
+            {
+                Console.WriteLine(item.Description());
+            }
         }
     }
 }
