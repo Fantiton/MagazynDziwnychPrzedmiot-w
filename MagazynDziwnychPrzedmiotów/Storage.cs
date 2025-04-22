@@ -47,6 +47,11 @@ namespace MagazynDziwnychPrzedmiotów
             return Capacity;
         }
 
+        public List<Item> GetContent()
+        {
+            return Content;
+        }
+
         public void Add(Item item)
         {
             Content.Add(item);
