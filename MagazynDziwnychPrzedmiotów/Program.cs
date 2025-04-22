@@ -27,7 +27,7 @@ void Main()
            AddStorage(); 
            break;
         case "12":
-           // ListStorage();
+           ListStorage();
            break;
         case "13":
             //ListFreeStorages();
